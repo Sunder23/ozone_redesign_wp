@@ -61,24 +61,18 @@ export default defineConfig({
         entryFileNames: '[name]-[hash].js',
         chunkFileNames: '[name]-[hash].js',
         assetFileNames: (assetInfo) => {
-          const extType = assetInfo.name.split('.');
+          const name = assetInfo.name ?? assetInfo.names?.[0] ?? '';
+          const extType = name.split('.');
+
+          const ext = extType[extType.length - 1];
 
           // group fonts in a folder
-          if (
-            extType[1] === 'woff' ||
-            extType[1] === 'woff2' ||
-            extType[1] === 'ttf'
-          ) {
+          if (ext === 'woff' || ext === 'woff2' || ext === 'ttf') {
             return 'fonts/[name]-[hash].[ext]';
           }
 
           // group images in a folder
-          if (
-            extType[1] === 'gif' ||
-            extType[1] === 'jpg' ||
-            extType[1] === 'jpeg' ||
-            extType[1] === 'png'
-          ) {
+          if (ext === 'gif' || ext === 'jpg' || ext === 'jpeg' || ext === 'png') {
             return 'img/[name]-[hash].[ext]';
           }
 

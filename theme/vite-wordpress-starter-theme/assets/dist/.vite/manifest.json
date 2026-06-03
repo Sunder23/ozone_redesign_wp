@@ -1,0 +1,17 @@
+{
+  "assets/src/js/main.js": {
+    "file": "js/main-C_mbGaG4.js",
+    "name": "js/main",
+    "src": "assets/src/js/main.js",
+    "isEntry": true
+  },
+  "assets/src/scss/main.scss": {
+    "file": "css/main-esXzyWLB.css",
+    "name": "main",
+    "names": [
+      "main.css"
+    ],
+    "src": "assets/src/scss/main.scss",
+    "isEntry": true
+  }
+}

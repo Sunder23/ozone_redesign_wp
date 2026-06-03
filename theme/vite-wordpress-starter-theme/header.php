@@ -10,7 +10,10 @@
 <body <?php body_class(); ?>>
   <?php wp_body_open(); ?>
 
-  <?php $header = get_field('header', 'options'); ?>
+  <?php
+  $header = get_field('header', 'options');
+  $phones = get_field('phones', 'options');
+  ?>
 
   <header class="header">
     <div class="container">
@@ -21,8 +24,8 @@
             <p><?php echo esc_html($header['address']); ?></p>
           <?php endif; ?>
 
-          <?php if ($header['phones']): ?>
-            <?php foreach ($header['phones'] as $phone): ?>
+          <?php if ($phones): ?>
+            <?php foreach ($phones as $phone): ?>
               <?php if (!empty($phone['phone'])): ?>
                 <?php $p = $phone['phone']; ?>
                 <a href="<?php echo $p['url'] ?>" <?php if ($p['target']) echo 'target="_blank"'; ?>
