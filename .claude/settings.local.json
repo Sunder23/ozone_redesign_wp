@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node *)",
+      "Bash(Remove-Item \"D:\\\\Work\\\\ozone_redesign_wp\\\\theme\\\\vite-wordpress-starter-theme\\\\acf-json\\\\group_6e72a8c1.json\",)",
+      "Bash(\"D:\\\\Work\\\\ozone_redesign_wp\\\\theme\\\\vite-wordpress-starter-theme\\\\acf-json\\\\group_4c073af4.json\",)",
+      "Bash(\"D:\\\\Work\\\\ozone_redesign_wp\\\\theme\\\\vite-wordpress-starter-theme\\\\acf-json\\\\group_3185d444.json\",)",
+      "Bash(\"D:\\\\Work\\\\ozone_redesign_wp\\\\theme\\\\vite-wordpress-starter-theme\\\\acf-json\\\\group_efb459cd.json\",)",
+      "Bash(\"D:\\\\Work\\\\ozone_redesign_wp\\\\theme\\\\vite-wordpress-starter-theme\\\\acf-json\\\\group_5a35b3d1.json\",)"
+    ]
+  }
+}
