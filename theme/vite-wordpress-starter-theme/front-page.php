@@ -131,7 +131,7 @@
                         <?php endif; ?>
                       </div>
                       <button class="btn--arrow" aria-label="Детальніше">
-                        <img src="<?php echo esc_url(get_theme_file_uri('assets/images/icon-arrow.svg')); ?>" alt="" width="48" height="48">
+                        <img src="<?php echo esc_url(get_theme_file_uri('static/img/icon-arrow.svg')); ?>" alt="" width="48" height="48">
                       </button>
                     </div>
                   <?php endforeach; ?>
@@ -155,7 +155,7 @@
           <?php endif; ?>
           <div class="enjoy__cta">
             <button class="btn--glass" <?php if (!empty($enjoy['video_url'])): ?> data-video-url="<?php echo esc_url($enjoy['video_url']); ?>" <?php endif; ?>>
-              <img src="<?php echo esc_url(get_theme_file_uri('assets/images/icon-play.svg')); ?>" alt="" width="22" height="22">
+              <img src="<?php echo esc_url(get_theme_file_uri('static/img/icon-play.svg')); ?>" alt="" width="22" height="22">
               Відео-презентація
             </button>
           </div>
@@ -244,7 +244,7 @@
 
       <!-- ════════════════════════════════════════════ SECTION 7 — FLOOR PLAN -->
       <?php if ($floorplan): ?>
-        <section id="s7" class="floorplan">
+        <section id="plans" class="floorplan">
           <div class="container">
             <div class="floorplan__wrapper">
               <div class="floorplan__header">

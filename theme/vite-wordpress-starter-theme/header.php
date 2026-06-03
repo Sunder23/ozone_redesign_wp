@@ -20,32 +20,25 @@
           <?php if (!empty($header['address'])): ?>
             <p><?php echo esc_html($header['address']); ?></p>
           <?php endif; ?>
-          <?php if (!empty($header['phone_1'])): ?>
-            <p><?php echo esc_html($header['phone_1']); ?></p>
-          <?php endif; ?>
-          <?php if (!empty($header['phone_2'])): ?>
-            <p><?php echo esc_html($header['phone_2']); ?></p>
+
+          <?php if ($header['phones']): ?>
+            <?php foreach ($header['phones'] as $phone): ?>
+              <?php if (!empty($phone['phone'])): ?>
+                <?php $p = $phone['phone']; ?>
+                <a href="<?php echo $p['url'] ?>" <?php if ($p['target']) echo 'target="_blank"'; ?>
+                  class="header_phone"><?php echo esc_html($p['title']); ?></a>
+              <?php endif; ?>
+            <?php endforeach; ?>
           <?php endif; ?>
         </div>
-
-        <a href="<?php echo esc_url(home_url('/')); ?>" class="logo">
-          <img class="logo__icon"
-            src="<?php echo esc_url(get_theme_file_uri('assets/images/logo-icon.png')); ?>"
-            alt="<?php echo esc_attr(get_bloginfo('name')); ?>"
-            width="44" height="44">
-          <div class="logo__wordmark">
-            <img class="logo__name"
-              src="<?php echo esc_url(get_theme_file_uri('assets/images/logo-name.png')); ?>"
-              alt="<?php echo esc_attr(get_bloginfo('name')); ?>"
-              width="116" height="28">
-            <span class="logo__descriptor" aria-label="Residence">
-              <span>R</span><span>e</span><span>s</span><span>i</span><span>d</span><span>e</span><span>n</span><span>c</span><span>e</span>
-            </span>
-          </div>
-        </a>
+        <?php if ($header['logo']): ?>
+          <a href="<?php echo esc_url(home_url('/')); ?>" class="logo">
+            <?php echo wp_get_attachment_image($header['logo'], 'full'); ?>
+          </a>
+        <?php endif; ?>
 
         <div class="header__nav">
-          <?php if (!empty($h['nav_link'])): $nav = $h['nav_link']; ?>
+          <?php if (!empty($header['nav_link'])): $nav = $header['nav_link']; ?>
             <a href="<?php echo esc_url($nav['url']); ?>"
               class="btn--outline-white"
               <?php if ($nav['target']): ?>target="<?php echo esc_attr($nav['target']); ?>" <?php endif; ?>>

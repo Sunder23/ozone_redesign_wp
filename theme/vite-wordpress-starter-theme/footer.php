@@ -15,7 +15,7 @@
 
             <?php if (!empty($f['address_text'])): ?>
               <div class="footer__contact-item">
-                <img src="<?php echo esc_url(get_theme_file_uri('assets/images/icon-location.svg')); ?>" alt="" width="40" height="40">
+                <img src="<?php echo esc_url(get_theme_file_uri('static/img/icon-location.svg')); ?>" alt="" width="40" height="40">
                 <p>
                   <?php echo nl2br(esc_html($f['address_text'])); ?>
                   <?php if (!empty($f['map_url'])): ?>
@@ -27,21 +27,21 @@
 
             <?php if (!empty($f['email'])): ?>
               <div class="footer__contact-item footer__contact-item--center">
-                <img src="<?php echo esc_url(get_theme_file_uri('assets/images/icon-email.svg')); ?>" alt="" width="40" height="40">
+                <img src="<?php echo esc_url(get_theme_file_uri('static/img/icon-email.svg')); ?>" alt="" width="40" height="40">
                 <a href="mailto:<?php echo esc_attr($f['email']); ?>" class="link--contact"><?php echo esc_html($f['email']); ?></a>
               </div>
             <?php endif; ?>
 
-            <?php if (!empty($f['phone_1']) || !empty($f['phone_2'])): ?>
+            //ACF Repeater for phones
+            <?php if (!empty($f['phones'])): ?>
               <div class="footer__contact-item">
-                <img src="<?php echo esc_url(get_theme_file_uri('assets/images/icon-phone.svg')); ?>" alt="" width="40" height="40">
+                <img src="<?php echo esc_url(get_theme_file_uri('static/img/icon-phone.svg')); ?>" alt="" width="40" height="40">
                 <div class="footer__phones">
-                  <?php if (!empty($f['phone_1'])): ?>
-                    <a href="tel:<?php echo esc_attr(preg_replace('/[^\d+]/', '', $f['phone_1'])); ?>" class="link--contact"><?php echo esc_html($f['phone_1']); ?></a>
-                  <?php endif; ?>
-                  <?php if (!empty($f['phone_2'])): ?>
-                    <a href="tel:<?php echo esc_attr(preg_replace('/[^\d+]/', '', $f['phone_2'])); ?>" class="link--contact"><?php echo esc_html($f['phone_2']); ?></a>
-                  <?php endif; ?>
+                  <?php foreach ($f['phones'] as $phone): ?>
+                    <?php if (!empty($phone['phone'])): ?>
+                      <a href="tel:<?php echo esc_attr(preg_replace('/[^\d+]/', '', $phone['phone'])); ?>" class="link--contact"><?php echo esc_html($phone['phone']); ?></a>
+                    <?php endif; ?>
+                  <?php endforeach; ?>
                 </div>
               </div>
             <?php endif; ?>
@@ -53,16 +53,7 @@
           <?php if (!empty($f['form_heading'])): ?>
             <h2 class="footer__heading footer__heading--center"><?php echo esc_html($f['form_heading']); ?></h2>
           <?php endif; ?>
-          <form class="form" method="post" action="">
-            <?php wp_nonce_field('footer_contact_form', 'footer_nonce'); ?>
-            <div class="form__field">
-              <input type="text" name="contact_name" placeholder="Ім'я" autocomplete="given-name">
-            </div>
-            <div class="form__field">
-              <input type="tel" name="contact_phone" placeholder="Телефон" autocomplete="tel">
-            </div>
-            <button type="submit" class="btn--submit">Відправити</button>
-          </form>
+          <?php echo do_shortcode('[contact-form-7 id="123" title="Footer Form"]'); ?>
         </div>
 
       </div>
@@ -79,4 +70,5 @@
 
 <?php wp_footer(); ?>
 </body>
+
 </html>
