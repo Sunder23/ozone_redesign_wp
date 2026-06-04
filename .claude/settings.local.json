@@ -7,7 +7,10 @@
       "Bash(\"D:\\\\Work\\\\ozone_redesign_wp\\\\theme\\\\vite-wordpress-starter-theme\\\\acf-json\\\\group_3185d444.json\",)",
       "Bash(\"D:\\\\Work\\\\ozone_redesign_wp\\\\theme\\\\vite-wordpress-starter-theme\\\\acf-json\\\\group_efb459cd.json\",)",
       "Bash(\"D:\\\\Work\\\\ozone_redesign_wp\\\\theme\\\\vite-wordpress-starter-theme\\\\acf-json\\\\group_5a35b3d1.json\",)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); fields=[f['name'] for f in d.get\\('fields',[]\\)]; print\\(json.dumps\\({'title':d['title'],'fields':fields},indent=2\\)\\)\")",
+      "Bash(python3 *)",
+      "Bash(npm run *)"
     ]
   }
 }

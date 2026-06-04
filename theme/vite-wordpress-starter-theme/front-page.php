@@ -247,30 +247,63 @@
         <section id="plans" class="floorplan">
           <div class="container">
             <div class="floorplan__wrapper">
+
               <div class="floorplan__header">
                 <?php if (!empty($floorplan['title'])): ?>
                   <h2><?php echo esc_html($floorplan['title']); ?></h2>
                 <?php endif; ?>
-                <div class="floorplan__tabs">
-                  <div class="floorplan__section-group" id="groupA">
-                    <button class="floorplan__section-btn floorplan__section-btn--active" data-section="A">Секція А (вид на море)</button>
-                    <div class="floorplan__floors" id="floorsA">
-                      <button class="floorplan__floor floorplan__floor--active">1&nbsp;поверх</button>
-                      <button class="floorplan__floor">2</button>
-                      <button class="floorplan__floor">3</button>
-                      <button class="floorplan__floor">4</button>
-                    </div>
-                  </div>
-                  <button class="floorplan__section-btn" data-section="B">Секція B (вид на парк)</button>
-                </div>
-              </div>
-              <div class="floorplan__slider">
-                <?php if (!empty($floorplan['floor_plan_image'])): $img = $floorplan['floor_plan_image']; ?>
-                  <div class="floorplan__image">
-                    <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>">
+
+                <?php if (!empty($floorplan['sections'])): ?>
+                  <div class="floorplan__tabs">
+                    <?php foreach ($floorplan['sections'] as $i => $section): ?>
+                      <button class="floorplan__section-btn<?php echo $i === 0 ? ' floorplan__section-btn--active' : ''; ?>"
+                        data-tab="<?php echo esc_attr($i); ?>">
+                        <?php echo esc_html($section['label']); ?>
+                      </button>
+                      <?php if (count($section['slides']) > 1): ?>
+                        <div class="floorplan__floors" data-floorplan="<?php echo esc_attr($i); ?>">
+                          <?php foreach ($section['slides'] as $j => $slide): ?>
+                            <button class="floorplan__floor<?php echo $j === 0 ? ' floorplan__floor--active' : ''; ?>"
+                              data-slide="<?php echo esc_attr($j); ?>">
+                              <?php echo $j === 0 ? '1&nbsp;поверх' : ($j + 1); ?>
+                            </button>
+                          <?php endforeach; ?>
+                        </div>
+                      <?php endif; ?>
+
+                    <?php endforeach; ?>
+
                   </div>
                 <?php endif; ?>
               </div>
+
+              <?php if (!empty($floorplan['sections'])): ?>
+                <div class="floorplan__panels">
+                  <?php foreach ($floorplan['sections'] as $i => $section): ?>
+                    <div class="floorplan__panel<?php echo $i === 0 ? ' is-active' : ''; ?>" data-tab="<?php echo esc_attr($i); ?>">
+                      <?php
+                      $slides = $section['slides'] ?? [];
+                      if (!empty($slides)): ?>
+                        <div class="swiper floorplan__swiper">
+                          <div class="swiper-wrapper">
+                            <?php foreach ($slides as $slide): ?>
+                              <?php if (!empty($slide['image'])): $img = $slide['image']; ?>
+                                <div class="swiper-slide">
+                                  <div class="floorplan__image">
+                                    <?php echo wp_get_attachment_image($img, 'full'); ?>
+                                  </div>
+                                </div>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          </div>
+                        </div>
+                      <?php endif; ?>
+
+                    </div>
+                  <?php endforeach; ?>
+                </div>
+              <?php endif; ?>
+
             </div>
           </div>
         </section>
