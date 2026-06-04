@@ -15,8 +15,8 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-  background: #fcffff;
+  font-family: var(--font-body);
+  background: var(--white);
   color: var(--text);
   overflow-x: hidden;
 }
