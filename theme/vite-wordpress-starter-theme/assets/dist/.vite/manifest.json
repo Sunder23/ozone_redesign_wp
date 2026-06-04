@@ -6,12 +6,29 @@
     "isEntry": true
   },
   "assets/src/scss/main.scss": {
-    "file": "css/main-esXzyWLB.css",
+    "file": "css/main-CEiQQ5mr.css",
     "name": "main",
     "names": [
       "main.css"
     ],
     "src": "assets/src/scss/main.scss",
-    "isEntry": true
+    "isEntry": true,
+    "assets": [
+      "fonts/SFProText-Regular-BlvCkOqN.woff2",
+      "fonts/SFProText-Medium-BqKwADfo.woff2",
+      "fonts/SFProText-SemiBold-BmbUz8DG.woff2"
+    ]
+  },
+  "static/fonts/SFProText-Medium.woff2": {
+    "file": "fonts/SFProText-Medium-BqKwADfo.woff2",
+    "src": "static/fonts/SFProText-Medium.woff2"
+  },
+  "static/fonts/SFProText-Regular.woff2": {
+    "file": "fonts/SFProText-Regular-BlvCkOqN.woff2",
+    "src": "static/fonts/SFProText-Regular.woff2"
+  },
+  "static/fonts/SFProText-SemiBold.woff2": {
+    "file": "fonts/SFProText-SemiBold-BmbUz8DG.woff2",
+    "src": "static/fonts/SFProText-SemiBold.woff2"
   }
 }

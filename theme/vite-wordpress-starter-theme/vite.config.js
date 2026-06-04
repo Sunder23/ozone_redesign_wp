@@ -10,10 +10,7 @@ import { defineConfig } from 'vite';
 import { readdirSync } from 'fs';
 import { resolve } from 'path';
 
-// Get the relative path of the vite.config.js file for the alias
-const fullPath = import.meta.url.slice(0, import.meta.url.lastIndexOf('/'));
-const getWpContentIndex = fullPath.indexOf('wp-content');
-const wpContentPath = fullPath.slice(getWpContentIndex);
+
 
 const scssEntries = () => {
   const scssDir = resolve(__dirname, 'assets/src/scss');
@@ -61,18 +58,25 @@ export default defineConfig({
         entryFileNames: '[name]-[hash].js',
         chunkFileNames: '[name]-[hash].js',
         assetFileNames: (assetInfo) => {
-          const name = assetInfo.name ?? assetInfo.names?.[0] ?? '';
-          const extType = name.split('.');
-
-          const ext = extType[extType.length - 1];
+          const assetName = assetInfo.name || assetInfo.names?.[0] || '';
+          const extType = assetName.split('.');
 
           // group fonts in a folder
-          if (ext === 'woff' || ext === 'woff2' || ext === 'ttf') {
+          if (
+            extType[1] === 'woff' ||
+            extType[1] === 'woff2' ||
+            extType[1] === 'ttf'
+          ) {
             return 'fonts/[name]-[hash].[ext]';
           }
 
           // group images in a folder
-          if (ext === 'gif' || ext === 'jpg' || ext === 'jpeg' || ext === 'png') {
+          if (
+            extType[1] === 'gif' ||
+            extType[1] === 'jpg' ||
+            extType[1] === 'jpeg' ||
+            extType[1] === 'png'
+          ) {
             return 'img/[name]-[hash].[ext]';
           }
 
@@ -95,10 +99,10 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      '@':
-        process.env.NODE_ENV === 'development'
-          ? resolve(`${wpContentPath}/static`)
-          : '/static',
+      '@src': resolve(__dirname, 'assets/src'),
+      '@js': resolve(__dirname, 'assets/src/js'),
+      '@scss': resolve(__dirname, 'assets/src/scss'),
+      '@': resolve(__dirname, 'static'),
     },
   },
 });
