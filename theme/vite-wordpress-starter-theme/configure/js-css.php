@@ -120,8 +120,16 @@ add_filter('script_loader_tag', 'add_module_type_attribute', 10, 3);
 function _add_stylesheets()
 {
     wp_enqueue_style('adobe', 'https://use.typekit.net/jug2qva.css', null, null);
+    wp_enqueue_style('google-fonts-forum', 'https://fonts.googleapis.com/css2?family=Forum&display=swap', null, null);
 }
 add_action('wp_enqueue_scripts', '_add_stylesheets');
+
+function _add_font_preconnect()
+{
+    echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
+    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+}
+add_action('wp_head', '_add_font_preconnect', 1);
 
 function preload_files()
 {
