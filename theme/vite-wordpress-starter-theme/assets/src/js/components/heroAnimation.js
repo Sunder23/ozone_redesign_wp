@@ -4,9 +4,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-export function initHeroAnimation() {
+export async function initHeroAnimation() {
   const title = document.querySelector('.hero__title');
   if (!title) return;
+
+  await document.fonts.ready;
 
   const split = new SplitText(title, { type: 'lines', mask: 'lines' });
 
