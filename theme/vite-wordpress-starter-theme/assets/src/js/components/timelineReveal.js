@@ -27,6 +27,30 @@ export function initTimelineReveal() {
   if (descP) gsap.set(descP, { opacity: 0 });
   if (descImg) gsap.set(descImg, { opacity: 0, y: 20 });
 
+  // ── pre-entry: bg and h2 appear as section scrolls into view (before pin) ───
+  gsap.to(bg, {
+    opacity: 1,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 80%',
+      end: 'top 20%',
+      scrub: 1,
+    },
+  });
+
+  gsap.to(h2, {
+    opacity: 1,
+    y: 0,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 60%',
+      end: 'top top',
+      scrub: 1,
+    },
+  });
+
   // ── pinned scrub timeline ───────────────────────────────────────────────────
   const tl = gsap.timeline({
     scrollTrigger: {
@@ -36,20 +60,13 @@ export function initTimelineReveal() {
       scrub: 1,
       pin: true,
       pinSpacing: true,
-      anticipatePin: 1,
     },
   });
 
-  // 1. bg
-  tl.to(bg, { opacity: 1, duration: 0.5, ease: 'none' });
+  // 1. center line grows
+  tl.to(line, { scaleY: 1, duration: 0.5, ease: 'power2.out' });
 
-  // 2. h2
-  tl.to(h2, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, '-=0.1');
-
-  // 3. center line grows
-  tl.to(line, { scaleY: 1, duration: 0.5, ease: 'power2.out' }, '+=0.1');
-
-  // 4. nodes pop in one by one
+  // 2. nodes pop in one by one
   tl.to(nodes, {
     opacity: 1,
     scale: 1,
@@ -58,7 +75,7 @@ export function initTimelineReveal() {
     stagger: 0.08,
   }, '-=0.2');
 
-  // 5. left & right items slide in alternating (zip left/right)
+  // 3. left & right items slide in alternating (zip left/right)
   const maxItems = Math.max(leftItems.length, rightItems.length);
   for (let i = 0; i < maxItems; i++) {
     const offset = i === 0 ? '-=0.1' : '-=0.15';
@@ -66,7 +83,7 @@ export function initTimelineReveal() {
     if (rightItems[i]) tl.to(rightItems[i], { opacity: 1, x: 0, duration: 0.3, ease: 'power3.out' }, '-=0.25');
   }
 
-  // 6. desc paragraph — line by line
+  // 4. desc paragraph — line by line
   if (descP) {
     const split = new SplitText(descP, { type: 'lines', mask: 'lines' });
     gsap.set(split.lines, { yPercent: 100 });
@@ -79,7 +96,7 @@ export function initTimelineReveal() {
     }, '-=0.01');
   }
 
-  // 7. desc image
+  // 5. desc image
   if (descImg) {
     tl.to(descImg, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }, '-=0.1');
   }
