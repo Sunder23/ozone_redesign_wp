@@ -66,7 +66,7 @@
         <?php endif; ?>
         <?php if (!empty($header['nav_link'])): $nav = $header['nav_link']; ?>
           <a href="<?php echo esc_url($nav['url']); ?>"
-            class="btn--white"
+            class="btn--outline-white"
             <?php if ($nav['target']): ?>target="<?php echo esc_attr($nav['target']); ?>" <?php endif; ?>>
             <?php echo esc_html($nav['title']); ?>
           </a>

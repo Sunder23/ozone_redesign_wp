@@ -22,7 +22,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    bottom: 33%;
+    bottom: 15%;
     height: 100%;
 
     @media (max-width: 767px) {
@@ -805,7 +805,7 @@
     flex-direction: column;
     align-items: center;
     gap: 24px;
-    padding: 0 170px;
+    padding: 0;
     width: 100%;
     min-height: 137px;
     justify-content: flex-end;
@@ -861,15 +861,37 @@
     font-family: inherit;
     line-height: 1.45;
     flex-shrink: 0;
-    transition: background .15s, color .15s, border-color .15s;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      background: #586466;
+      border-color: #586466;
+      color: var(--white);
+      opacity: 0.7;
+    }
 
     &--active {
-      background: var(--blue);
-      border-color: var(--blue);
+      background: #586466;
+      border-color: #586466;
       color: var(--white);
 
       &+.floorplan__floors {
-        display: flex;
+        button {
+          pointer-events: all;
+
+          &.floorplan__floor--active {
+            background: #586466;
+            border-color: #586466;
+            color: var(--white);
+
+            &:hover {
+              background: #586466;
+              border-color: #586466;
+              color: var(--white);
+              opacity: 0.7;
+            }
+          }
+        }
       }
     }
 
@@ -881,8 +903,19 @@
   }
 
   &__floors {
-    display: none;
+    display: flex;
     align-items: center;
+
+    button {
+      pointer-events: none;
+
+      &.floorplan__floor--active {
+        color: var(--text);
+        background: var(--white);
+        border: 1px solid var(--border);
+      }
+    }
+
   }
 
   &__floor {

@@ -8,6 +8,7 @@ import { initScrollReveal } from '@js/components/scrollReveal.js';
 import { initFormatsPin } from '@js/components/formatsPin.js';
 import { initTechReveal } from '@js/components/techReveal.js';
 import { initTimelineReveal } from '@js/components/timelineReveal.js';
+import { initHeaderSecond } from '@js/components/headerSecond.js';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -31,4 +32,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initTechReveal();
   initTimelineReveal();
+  initHeaderSecond();
 });

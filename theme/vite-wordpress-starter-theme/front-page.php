@@ -31,6 +31,15 @@
                 <?php if (!empty($hero['title'])): ?>
                   <h1 class="hero__title"><?php echo esc_html($hero['title']); ?></h1>
                 <?php endif; ?>
+                <div class="header__nav">
+                  <?php if (!empty($hero['nav_link'])): $nav = $hero['nav_link']; ?>
+                    <a href="<?php echo esc_url($nav['url']); ?>"
+                      class="btn--primary btn--lg"
+                      <?php if ($nav['target']): ?>target="<?php echo esc_attr($nav['target']); ?>" <?php endif; ?>>
+                      <?php echo esc_html($nav['title']); ?>
+                    </a>
+                  <?php endif; ?>
+                </div>
               </div>
             </div>
           </div>
@@ -147,7 +156,7 @@
             <h2><?php echo esc_html($enjoy['title']); ?></h2>
           <?php endif; ?>
           <div class="enjoy__cta">
-            <button class="btn--glass" <?php if (!empty($enjoy['video_url'])): ?> data-video-url="<?php echo esc_url($enjoy['video_url']); ?>" <?php endif; ?>>
+            <button id="video_popup" class="btn--glass" <?php if (!empty($enjoy['video_url'])): ?> data-video-url="<?php echo esc_url($enjoy['video_url']); ?>" <?php endif; ?>>
               <img src="<?php echo esc_url(get_theme_file_uri('static/img/icon-play.svg')); ?>" alt="" width="22" height="22">
               Відео-презентація
             </button>
