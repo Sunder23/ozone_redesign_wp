@@ -31,13 +31,6 @@
                 <?php if (!empty($hero['title'])): ?>
                   <h1 class="hero__title"><?php echo esc_html($hero['title']); ?></h1>
                 <?php endif; ?>
-                <?php if (!empty($hero['cta_link'])): $link = $hero['cta_link']; ?>
-                  <a href="<?php echo esc_url($link['url']); ?>"
-                    class="btn--primary btn--lg"
-                    <?php if ($link['target']): ?>target="<?php echo esc_attr($link['target']); ?>" <?php endif; ?>>
-                    <?php echo esc_html($link['title']); ?>
-                  </a>
-                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -183,12 +176,14 @@
               <?php if (!empty($wellness['slides'])): ?>
                 <div class="wellness__slider">
                   <?php foreach ($wellness['slides'] as $slide): ?>
-                    <?php if (!empty($slide['image'])): $img = $slide['image']; ?>
-                      <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>">
-                    <?php endif; ?>
-                    <?php if (!empty($slide['label'])): ?>
-                      <h3><?php echo esc_html($slide['label']); ?></h3>
-                    <?php endif; ?>
+                    <div class="wellness__slider__item">
+                      <?php if (!empty($slide['image'])): $img = $slide['image']; ?>
+                        <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>">
+                      <?php endif; ?>
+                      <?php if (!empty($slide['label'])): ?>
+                        <h3><?php echo esc_html($slide['label']); ?></h3>
+                      <?php endif; ?>
+                    </div>
                   <?php endforeach; ?>
                 </div>
               <?php endif; ?>
@@ -296,6 +291,7 @@
                               <?php endif; ?>
                             <?php endforeach; ?>
                           </div>
+                          <div class="swiper-pagination"></div>
                         </div>
                       <?php endif; ?>
 

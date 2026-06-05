@@ -53,3 +53,32 @@
       </div>
     </div>
   </header>
+
+
+
+  <header class="header_second">
+    <div class="container">
+      <div class="header_wrapper">
+        <?php if ($header['second_logo']): ?>
+          <a href="<?php echo esc_url(home_url('/')); ?>" class="logo">
+            <?php echo wp_get_attachment_image($header['second_logo'], 'full'); ?>
+          </a>
+        <?php endif; ?>
+        <?php if (!empty($header['nav_link'])): $nav = $header['nav_link']; ?>
+          <a href="<?php echo esc_url($nav['url']); ?>"
+            class="btn--white"
+            <?php if ($nav['target']): ?>target="<?php echo esc_attr($nav['target']); ?>" <?php endif; ?>>
+            <?php echo esc_html($nav['title']); ?>
+          </a>
+        <?php endif; ?>
+
+        <?php if (!empty($header['cta_link'])): $link = $header['cta_link']; ?>
+          <a href="<?php echo esc_url($link['url']); ?>"
+            class="btn--primary btn--lg"
+            <?php if ($link['target']): ?>target="<?php echo esc_attr($link['target']); ?>" <?php endif; ?>>
+            <?php echo esc_html($link['title']); ?>
+          </a>
+        <?php endif; ?>
+      </div>
+    </div>
+  </header>

@@ -1,4 +1,5 @@
 import Swiper from 'swiper';
+import { Pagination } from 'swiper/modules';
 
 export function initFloorplanTabs() {
   const tabBtns = document.querySelectorAll('.floorplan__section-btn');
@@ -9,14 +10,17 @@ export function initFloorplanTabs() {
   panels.forEach((panel, index) => {
     const swiperEl = panel.querySelector('.floorplan__swiper');
     const floorBtnContainer = document.querySelector(`[data-floorplan="${index}"]`);
-    const floorBtns = floorBtnContainer.querySelectorAll('.floorplan__floor');
-
+    const floorBtns = floorBtnContainer ? floorBtnContainer.querySelectorAll('.floorplan__floor') : [];
 
     if (!swiperEl) return;
 
     const swiper = new Swiper(swiperEl, {
+      modules: [Pagination],
       slidesPerView: 1,
-      allowTouchMove: false,
+      pagination: {
+        el: swiperEl.querySelector('.swiper-pagination'),
+        clickable: true,
+      },
     });
 
     floorBtns.forEach((btn, i) => {
@@ -25,6 +29,13 @@ export function initFloorplanTabs() {
         btn.classList.add('floorplan__floor--active');
         swiper.slideTo(i);
       });
+    });
+
+    swiper.on('slideChange', () => {
+      floorBtns.forEach(b => b.classList.remove('floorplan__floor--active'));
+      if (floorBtns[swiper.activeIndex]) {
+        floorBtns[swiper.activeIndex].classList.add('floorplan__floor--active');
+      }
     });
   });
 

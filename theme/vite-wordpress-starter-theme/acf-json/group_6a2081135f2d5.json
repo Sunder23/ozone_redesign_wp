@@ -63,7 +63,33 @@
                     "preview_size": "medium"
                 },
                 {
-                    "key": "field_a70bdad5",
+                    "key": "field_6a227b4ec60c2",
+                    "label": "Second Logo",
+                    "name": "second_logo",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_6a227ba038a64",
                     "label": "Address",
                     "name": "address",
                     "aria-label": "",
@@ -78,6 +104,7 @@
                     },
                     "default_value": "",
                     "maxlength": "",
+                    "allow_in_bindings": 0,
                     "placeholder": "",
                     "prepend": "",
                     "append": ""
@@ -86,6 +113,22 @@
                     "key": "field_91fe0ac2",
                     "label": "Nav Link",
                     "name": "nav_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_34bf2b6e",
+                    "label": "Cta Link",
+                    "name": "cta_link",
                     "aria-label": "",
                     "type": "link",
                     "instructions": "",
@@ -339,5 +382,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780518833
+    "modified": 1780644778
 }
