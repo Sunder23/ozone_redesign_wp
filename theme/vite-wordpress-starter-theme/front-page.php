@@ -207,6 +207,8 @@
 
               <?php if (!empty($tech['items'])): ?>
                 <div class="tech__grid">
+                  <div class="tech__title-panel tech__title-panel--left"><span>Технології, які працюють непомітно</span></div>
+                  <div class="tech__title-panel tech__title-panel--right"><span>Технології, які працюють непомітно</span></div>
                   <div class="tech__bg">
                     <div class="tech__bg-fill"></div>
                     <?php if (!empty($tech['bg_image'])): $img = $tech['bg_image']; ?>
