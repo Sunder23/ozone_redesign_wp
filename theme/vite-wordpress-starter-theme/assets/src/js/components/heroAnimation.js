@@ -11,7 +11,7 @@ export async function initHeroAnimation() {
   await document.fonts.ready;
 
   const split = new SplitText(title, { type: 'lines', mask: 'lines' });
-
+  title.style.opacity = 1;
   gsap.from(split.lines, {
     opacity: 0,
     y: '100%',
