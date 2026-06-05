@@ -108,6 +108,23 @@
   font-family: inherit;
   white-space: nowrap;
 
+  svg {
+    path {
+      transition: 0.3s ease-in-out;
+    }
+  }
+
+  &:hover {
+    background: var(--white) !important;
+    color: #085D6D !important;
+
+    svg {
+      path {
+        fill: #085D6D !important;
+      }
+    }
+  }
+
   @media (max-width: 767px) {
     font-size: 15px;
     padding: 14px 16px;

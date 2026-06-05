@@ -157,7 +157,9 @@
           <?php endif; ?>
           <div class="enjoy__cta">
             <button id="video_popup" class="btn--glass" <?php if (!empty($enjoy['video_url'])): ?> data-video-url="<?php echo esc_url($enjoy['video_url']); ?>" <?php endif; ?>>
-              <img src="<?php echo esc_url(get_theme_file_uri('static/img/icon-play.svg')); ?>" alt="" width="22" height="22">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M11 0C17.0751 0 22 4.92487 22 11C22 17.0751 17.0751 22 11 22C4.92487 22 0 17.0751 0 11C0 4.92487 4.92487 0 11 0ZM8.27051 6.02637C8.2159 5.99235 8.14615 5.99048 8.08984 6.02441C8.03512 6.05766 8 6.12122 8 6.18945V15.8105C8.00013 15.8795 8.03517 15.9414 8.08984 15.9746C8.14623 16.0095 8.21585 16.0076 8.27051 15.9727L15.9131 11.1621C15.9678 11.1289 16 11.0663 16 10.999C15.9999 10.9337 15.9676 10.8711 15.9131 10.8379L8.27051 6.02637Z" fill="white" />
+              </svg>
               Відео-презентація
             </button>
           </div>
@@ -456,8 +458,8 @@
       <div class="modal-video__container">
         <button class="modal-video__close" aria-label="Закрити">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="1" y1="1" x2="19" y2="19" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            <line x1="19" y1="1" x2="1" y2="19" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <line x1="1" y1="1" x2="19" y2="19" stroke="white" stroke-width="2" stroke-linecap="round" />
+            <line x1="19" y1="1" x2="1" y2="19" stroke="white" stroke-width="2" stroke-linecap="round" />
           </svg>
         </button>
         <div class="modal-video__inner"></div>
