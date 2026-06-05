@@ -451,6 +451,19 @@
 
     </main>
 
+    <!-- VIDEO POPUP -->
+    <div id="modal-video" class="modal-video" role="dialog" aria-modal="true" aria-label="Відео">
+      <div class="modal-video__container">
+        <button class="modal-video__close" aria-label="Закрити">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="1" y1="1" x2="19" y2="19" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <line x1="19" y1="1" x2="1" y2="19" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="modal-video__inner"></div>
+      </div>
+    </div>
+
 <?php endwhile;
 endif; ?>
 

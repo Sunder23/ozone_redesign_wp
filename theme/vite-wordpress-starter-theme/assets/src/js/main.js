@@ -9,6 +9,7 @@ import { initFormatsPin } from '@js/components/formatsPin.js';
 import { initTechReveal } from '@js/components/techReveal.js';
 import { initTimelineReveal } from '@js/components/timelineReveal.js';
 import { initHeaderSecond } from '@js/components/headerSecond.js';
+import { initVideoPopup } from '@js/components/videoPopup.js';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -33,4 +34,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initTechReveal();
   initTimelineReveal();
   initHeaderSecond();
+  initVideoPopup();
 });
