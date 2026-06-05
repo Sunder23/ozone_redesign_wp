@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { initFloorplanTabs } from '@js/components/floorplanTabs.js';
+import { initHeroAnimation } from '@js/components/heroAnimation.js';
 import { initLenis } from '@js/components/lenis.js';
 import { initWellnessStack } from '@js/components/wellnessStack.js';
 import 'swiper/css';
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   gsap.ticker.lagSmoothing(0);
 
+  initHeroAnimation();
   initFloorplanTabs();
   initWellnessStack();
 });

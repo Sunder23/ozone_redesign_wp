@@ -124,7 +124,7 @@
                         <?php endif; ?>
                       </div>
                       <button class="btn--arrow" aria-label="Детальніше">
-                        <img src="<?php echo esc_url(get_theme_file_uri('static/img/icon-arrow.svg')); ?>" alt="" width="48" height="48">
+                        <img src="<?php echo esc_url(get_theme_file_uri('static/img/icon-arrow.svg')); ?>" alt="" width="48" height="48" class="btn--arrow--img">
                       </button>
                     </div>
                   <?php endforeach; ?>
