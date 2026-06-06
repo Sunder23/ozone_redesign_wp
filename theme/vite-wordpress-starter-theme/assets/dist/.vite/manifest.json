@@ -1,0 +1,37 @@
+{
+  "assets/src/js/main.js": {
+    "file": "js/main-kTtU5B9W.js",
+    "name": "js/main",
+    "src": "assets/src/js/main.js",
+    "isEntry": true,
+    "css": [
+      "css/main-DjMxu4j7.css"
+    ]
+  },
+  "assets/src/scss/main.scss": {
+    "file": "css/main-BNhxp5Hq.css",
+    "name": "main",
+    "names": [
+      "main.css"
+    ],
+    "src": "assets/src/scss/main.scss",
+    "isEntry": true,
+    "assets": [
+      "fonts/SFProText-Regular-BlvCkOqN.woff2",
+      "fonts/SFProText-Medium-BqKwADfo.woff2",
+      "fonts/SFProText-SemiBold-BmbUz8DG.woff2"
+    ]
+  },
+  "static/fonts/SFProText-Medium.woff2": {
+    "file": "fonts/SFProText-Medium-BqKwADfo.woff2",
+    "src": "static/fonts/SFProText-Medium.woff2"
+  },
+  "static/fonts/SFProText-Regular.woff2": {
+    "file": "fonts/SFProText-Regular-BlvCkOqN.woff2",
+    "src": "static/fonts/SFProText-Regular.woff2"
+  },
+  "static/fonts/SFProText-SemiBold.woff2": {
+    "file": "fonts/SFProText-SemiBold-BmbUz8DG.woff2",
+    "src": "static/fonts/SFProText-SemiBold.woff2"
+  }
+}

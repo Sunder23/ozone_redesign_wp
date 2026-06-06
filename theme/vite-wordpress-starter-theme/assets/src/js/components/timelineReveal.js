@@ -15,6 +15,7 @@ export function initTimelineReveal() {
   const nodes = section.querySelectorAll('.timeline__node');
   const leftItems = section.querySelectorAll('.timeline__col--left  .timeline__item');
   const rightItems = section.querySelectorAll('.timeline__col--right .timeline__item');
+  const desc = section.querySelector('.timeline__desc');
   const descP = section.querySelector('.timeline__desc p');
   const descImg = section.querySelector('.timeline__desc img');
 
@@ -25,7 +26,7 @@ export function initTimelineReveal() {
   gsap.set(nodes, { opacity: 0, scale: 0 });
   gsap.set(leftItems, { opacity: 0, x: -24 });
   gsap.set(rightItems, { opacity: 0, x: 24 });
-  if (descP) gsap.set(descP, { opacity: 0 });
+  // descP lines are hidden after SplitText runs below
   if (descImg) gsap.set(descImg, { opacity: 0, y: 20 });
 
   // ── pre-entry: bg and h2 appear as section scrolls into view (before pin) ───
@@ -56,7 +57,7 @@ export function initTimelineReveal() {
   ScrollTrigger.create({
     trigger: grid,
     start: 'top top+=8%',
-    end: '+=200%',
+    end: '+=300%',
     pin: bg,
     pinSpacing: false,
   });
@@ -66,7 +67,7 @@ export function initTimelineReveal() {
     scrollTrigger: {
       trigger: grid,
       start: 'top top+=8%',
-      end: '+=200%',
+      end: '+=300%',
       scrub: 2,
       pin: true,
       pinSpacing: true,
@@ -93,21 +94,35 @@ export function initTimelineReveal() {
     if (rightItems[i]) tl.to(rightItems[i], { opacity: 1, x: 0, duration: 1.1, ease: 'power2.out' }, '-=0.6');
   }
 
-  // 4. desc paragraph — line by line
+  // 4 & 5. desc — scrub-анимация, следует за скроллом в обе стороны
   if (descP) {
-    const split = new SplitText(descP, { type: 'lines', mask: 'lines' });
-    gsap.set(split.lines, { yPercent: 100 });
-    tl.to(descP, { opacity: 1, duration: 0.01 }, '+=0.2');
-    tl.to(split.lines, {
-      yPercent: 0,
-      duration: 0.55,
+    const split = new SplitText(descP, { type: 'lines' });
+    gsap.set(split.lines, { opacity: 0, y: 18 });
+    gsap.to(split.lines, {
+      opacity: 1,
+      y: 0,
       ease: 'power2.out',
       stagger: 0.15,
-    }, '-=0.01');
+      scrollTrigger: {
+        trigger: descP,
+        start: 'top 85%',
+        end: 'bottom 40%',
+        scrub: 1.5,
+      },
+    });
   }
 
-  // 5. desc image
   if (descImg) {
-    tl.to(descImg, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.2');
+    gsap.to(descImg, {
+      opacity: 1,
+      y: 0,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: descImg,
+        start: 'top 90%',
+        end: 'bottom 50%',
+        scrub: 1.5,
+      },
+    });
   }
 }
