@@ -11,6 +11,7 @@ export function initTimelineReveal() {
   const bg = section.querySelector('.timeline__bg');
   const h2 = section.querySelector('.timeline__inner > h2');
   const line = section.querySelector('.timeline__line');
+  const grid = section.querySelector('.timeline__grid');
   const nodes = section.querySelectorAll('.timeline__node');
   const leftItems = section.querySelectorAll('.timeline__col--left  .timeline__item');
   const rightItems = section.querySelectorAll('.timeline__col--right .timeline__item');
@@ -51,53 +52,62 @@ export function initTimelineReveal() {
     },
   });
 
+  // ── pin bg in sync with grid ────────────────────────────────────────────────
+  ScrollTrigger.create({
+    trigger: grid,
+    start: 'top top+=8%',
+    end: '+=200%',
+    pin: bg,
+    pinSpacing: false,
+  });
+
   // ── pinned scrub timeline ───────────────────────────────────────────────────
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: section,
-      start: 'bottom bottom',
-      end: `+=${section.offsetHeight * 2.5}`,
-      scrub: 1,
+      trigger: grid,
+      start: 'top top+=8%',
+      end: '+=200%',
+      scrub: 2,
       pin: true,
       pinSpacing: true,
     },
   });
 
   // 1. center line grows
-  tl.to(line, { scaleY: 1, duration: 0.5, ease: 'power2.out' });
+  tl.to(line, { scaleY: 1, duration: 0.8, ease: 'power2.inOut' });
 
   // 2. nodes pop in one by one
   tl.to(nodes, {
     opacity: 1,
     scale: 1,
-    duration: 0.3,
-    ease: 'back.out(1.7)',
-    stagger: 0.08,
-  }, '-=0.2');
+    duration: 1.2,
+    ease: 'back.out(1.2)',
+    stagger: 0.18,
+  }, '-=0.3');
 
   // 3. left & right items slide in alternating (zip left/right)
   const maxItems = Math.max(leftItems.length, rightItems.length);
   for (let i = 0; i < maxItems; i++) {
-    const offset = i === 0 ? '-=0.1' : '-=0.15';
-    if (leftItems[i]) tl.to(leftItems[i], { opacity: 1, x: 0, duration: 0.3, ease: 'power3.out' }, offset);
-    if (rightItems[i]) tl.to(rightItems[i], { opacity: 1, x: 0, duration: 0.3, ease: 'power3.out' }, '-=0.25');
+    const offset = i === 0 ? '-=0.2' : '+=0.08';
+    if (leftItems[i]) tl.to(leftItems[i], { opacity: 1, x: 0, duration: 1.1, ease: 'power2.out' }, offset);
+    if (rightItems[i]) tl.to(rightItems[i], { opacity: 1, x: 0, duration: 1.1, ease: 'power2.out' }, '-=0.6');
   }
 
   // 4. desc paragraph — line by line
   if (descP) {
     const split = new SplitText(descP, { type: 'lines', mask: 'lines' });
     gsap.set(split.lines, { yPercent: 100 });
-    tl.to(descP, { opacity: 1, duration: 0.01 }, '+=0.1');
+    tl.to(descP, { opacity: 1, duration: 0.01 }, '+=0.2');
     tl.to(split.lines, {
       yPercent: 0,
-      duration: 0.25,
-      ease: 'power3.out',
-      stagger: 0.07,
+      duration: 0.55,
+      ease: 'power2.out',
+      stagger: 0.15,
     }, '-=0.01');
   }
 
   // 5. desc image
   if (descImg) {
-    tl.to(descImg, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }, '-=0.1');
+    tl.to(descImg, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.2');
   }
 }

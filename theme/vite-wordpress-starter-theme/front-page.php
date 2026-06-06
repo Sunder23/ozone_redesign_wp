@@ -109,9 +109,6 @@
                 <?php if (!empty($formats['title'])): ?>
                   <h2><?php echo esc_html($formats['title']); ?></h2>
                 <?php endif; ?>
-                <?php if (!empty($formats['description'])): ?>
-                  <?php echo wp_kses_post($formats['description']); ?>
-                <?php endif; ?>
               </div>
 
               <?php if (!empty($formats['cards'])): ?>

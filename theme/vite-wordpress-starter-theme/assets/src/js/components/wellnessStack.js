@@ -5,6 +5,9 @@ export function initWellnessStack() {
   const section = document.querySelector('.wellness');
   if (!section) return;
 
+  const slider = section.querySelector('.wellness__slider');
+  if (!slider) return;
+
   const cards = gsap.utils.toArray('.wellness__slider__item');
   if (cards.length < 2) return;
 
@@ -12,13 +15,12 @@ export function initWellnessStack() {
     gsap.set(card, { zIndex: i + 1 });
   });
 
-
   gsap.set(cards.slice(1), { yPercent: 100 });
   const SPEED_COEFFICIENT = 2;
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: section,
-      start: 'top top',
+      trigger: slider,
+      start: 'top-=30 top',
       end: () => `+=${(cards.length - 1) * window.innerHeight * SPEED_COEFFICIENT}`,
       pin: true,
       pinType: 'transform',
