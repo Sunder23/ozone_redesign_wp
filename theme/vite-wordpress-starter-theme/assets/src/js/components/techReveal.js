@@ -3,8 +3,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export function initTechReveal() {
   const section = document.querySelector('.tech');
-  const leftPanel = document.querySelector('.tech__title-panel--left');
-  const rightPanel = document.querySelector('.tech__title-panel--right');
+  const titleLines = gsap.utils.toArray('.tech__title-line');
+  const titleOverlay = document.querySelector('.tech__title-overlay');
   const leftCol = document.querySelector('.tech__col--left');
   const middleCol = document.querySelector('.tech__col--middle');
   const rightCol = document.querySelector('.tech__col--right');
@@ -14,7 +14,7 @@ export function initTechReveal() {
 
   const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
-  if (isMobile || !leftPanel || !rightPanel || !leftCol || !middleCol || !rightCol) {
+  if (isMobile || !titleLines.length || !leftCol || !middleCol || !rightCol) {
     const cols = [leftCol, middleCol, rightCol].filter(Boolean);
     if (cols.length) {
       gsap.set(cols, { opacity: 0, y: 30 });
@@ -29,11 +29,9 @@ export function initTechReveal() {
     return;
   }
 
-  // left/right cols come from above, middle from below
   gsap.set([leftCol, rightCol], { opacity: 0, y: -50 });
   gsap.set(middleCol, { opacity: 0, y: 50 });
 
-  // parallax on tech__bg img — only active while scrolling from wellness into tech
   const bgImg = document.querySelector('.tech__bg img');
   if (bgImg) {
     gsap.fromTo(bgImg,
@@ -62,19 +60,27 @@ export function initTechReveal() {
       pinSpacing: true,
     },
   });
-  console.log(section.offsetHeight * 2);
 
-  // phase 1: title panels slide apart
-  tl.to([leftPanel, rightPanel], {
-    xPercent: (i) => (i === 0 ? -100 : 100),
+  // phase 1: lines slide out — odd lines left, even lines right
+  tl.to(titleLines, {
+    xPercent: (i) => i % 2 === 0 ? -110 : 110,
     ease: 'power2.inOut',
     duration: 0.5,
   });
 
-  // phase 2: all three cols appear simultaneously
+  // overlay fades out as lines leave
+  if (titleOverlay) {
+    tl.to(titleOverlay, {
+      opacity: 0,
+      ease: 'power2.out',
+      duration: 0.3,
+    }, '-=0.15');
+  }
+
+  // phase 2: cols appear
   tl.to(
     [leftCol, middleCol, rightCol],
     { opacity: 1, y: 0, ease: 'power2.out', duration: 0.5 },
-    '-=0.15'
+    '-=0.05'
   );
 }

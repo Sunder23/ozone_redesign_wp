@@ -18,6 +18,32 @@ function revealOnScroll(el, vars = {}) {
   });
 }
 
+function animateSectionTitle(el) {
+  const split = new SplitText(el, { type: 'lines', mask: 'lines' });
+  gsap.from(split.lines, {
+    opacity: 0,
+    y: '100%',
+    duration: 0.9,
+    ease: 'power3.out',
+    stagger: 0.13,
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 88%',
+    },
+  });
+}
+
+// All section h2s get this animation except .hero and .timeline (has its own scrub animation)
+const SECTION_TITLE_SELECTORS = [
+  '.promo-card__title h2',
+  '.formats__header h2',
+  '.enjoy h2',
+  '.wellness__header h2',
+  '.tech__header h2',
+  '.floorplan__header h2',
+  '.gallery__header h2',
+];
+
 export function initScrollReveal() {
   // ── intro__text: animate each paragraph ────────────────────────────────────
   const introParagraphs = document.querySelectorAll('.intro__text p');
@@ -25,20 +51,9 @@ export function initScrollReveal() {
     revealOnScroll(p, { delay: i * 0.12 });
   });
 
-  // ── promo-card__title h2: split into lines, stagger each ───────────────────
-  const promoH2 = document.querySelector('.promo-card__title h2');
-  if (promoH2) {
-    const split = new SplitText(promoH2, { type: 'lines', mask: 'lines' });
-    gsap.from(split.lines, {
-      opacity: 0,
-      y: '100%',
-      duration: 0.9,
-      ease: 'power3.out',
-      stagger: 0.13,
-      scrollTrigger: {
-        trigger: promoH2,
-        start: 'top 88%',
-      },
-    });
-  }
+  // ── section titles: SplitText lines reveal (shared animation) ──────────────
+  SECTION_TITLE_SELECTORS.forEach(selector => {
+    const el = document.querySelector(selector);
+    if (el) animateSectionTitle(el);
+  });
 }

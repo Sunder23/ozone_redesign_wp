@@ -22,7 +22,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    bottom: 10%;
+    bottom: 140px;
     height: 100%;
 
     @media (max-width: 1440px) {
@@ -44,7 +44,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 80px;
+    gap: 40px;
     max-width: 640px;
     width: 100%;
 
@@ -61,9 +61,9 @@
 
   &__title {
     font-family: var(--font-forum);
+    font-size: 80px;
     font-weight: 400;
-    font-size: 76px;
-    line-height: 1.2;
+    line-height: 99%;
     text-align: center;
     color: var(--white);
     text-transform: uppercase;
@@ -462,6 +462,7 @@
 
 // ─── Section 5 — Wellness ────────────────────────────────────────────────────
 .wellness {
+  position: relative;
   background: var(--warm-1);
   padding: 80px 0 0;
 
@@ -570,7 +571,7 @@
 
 // ─── Section 6 — Tech ────────────────────────────────────────────────────────
 .tech {
-  background: var(--warm-2);
+  background: #D3D0CB;
   padding: 100px 0;
   overflow: hidden;
   height: 100vh;
@@ -588,36 +589,46 @@
     }
   }
 
-  &__title-panel {
-    font-family: var(--font-forum);
-    font-weight: 400;
-    font-size: 70px;
-    line-height: .99;
-    color: var(--white);
-    text-transform: uppercase;
+  &__title-overlay {
     position: absolute;
-    z-index: 1;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &__title-wrap {
+    position: absolute;
     inset: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    z-index: 3;
     pointer-events: none;
-
-    &--left {
-      clip-path: inset(0 50% 0 0);
-    }
-
-    &--right {
-      clip-path: inset(0 0 0 50%);
-    }
-
-    @media (max-width: 1024px) {
-      font-size: 56px;
-    }
 
     @media (max-width: 767px) {
       display: none;
+    }
+  }
+
+  &__title-line {
+    width: 100%;
+    text-align: center;
+    will-change: transform;
+
+    span {
+      display: block;
+      font-family: var(--font-forum);
+      font-weight: 400;
+      font-size: 70px;
+      line-height: .99;
+      color: var(--white);
+      text-transform: uppercase;
+
+      @media (max-width: 1024px) {
+        font-size: 56px;
+      }
     }
   }
 
@@ -896,6 +907,8 @@
       }
     }
 
+
+
     @media (max-width: 767px) {
       font-size: 14px;
       padding: 8px 12px;
@@ -908,7 +921,6 @@
     align-items: center;
 
     button {
-      pointer-events: none;
 
       &.floorplan__floor--active {
         color: var(--text);
@@ -1278,7 +1290,7 @@
   }
 
   &__header {
-    padding: 0 170px;
+    padding: 0 50px;
     width: 100%;
     text-align: center;
 

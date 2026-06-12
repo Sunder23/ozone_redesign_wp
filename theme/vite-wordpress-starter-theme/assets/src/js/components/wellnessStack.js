@@ -16,7 +16,7 @@ export function initWellnessStack() {
   });
 
   gsap.set(cards.slice(1), { yPercent: 100 });
-  const SPEED_COEFFICIENT = 2;
+  const SPEED_COEFFICIENT = 1.5;
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: slider,
@@ -25,19 +25,19 @@ export function initWellnessStack() {
       pin: true,
       pinType: 'transform',
       pinSpacing: true,
-      scrub: 1,
+      scrub: 0.5,
     },
   });
 
   cards.slice(1).forEach((card, i) => {
     tl.to(
       card,
-      { yPercent: 0, duration: 1, ease: 'power2.inOut' },
+      { yPercent: 0, duration: 1, ease: 'none' },
       i
     );
     tl.to(
       cards[i],
-      { scale: 0.92, duration: 1, ease: 'power2.inOut' },
+      { scale: 0.92, duration: 1, ease: 'none' },
       i
     );
   });

@@ -10,20 +10,31 @@ export async function initHeroAnimation() {
 
   await document.fonts.ready;
 
+  const header = document.querySelector('.header');
+  const heroNav = document.querySelector('.hero__content .header__nav');
   const split = new SplitText(title, { type: 'lines', mask: 'lines' });
   title.style.opacity = 1;
-  gsap.from(split.lines, {
-    opacity: 0,
-    y: '100%',
-    duration: 0.9,
-    ease: 'power3.out',
-    stagger: 0.12,
-    delay: 0.2,
-    force3D: true,
-    // onComplete: () => {
-    //   split.revert();
-    // }
-  });
+
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out', force3D: true } });
+
+  if (header) {
+    tl.fromTo(header,
+      { opacity: 0, y: -24 },
+      { opacity: 1, y: 0, duration: 1 }
+    );
+  }
+
+  tl.from(split.lines,
+    { opacity: 0, y: '100%', duration: 0.9, stagger: 0.12 },
+    '-=0.2'
+  );
+
+  if (heroNav) {
+    tl.from(heroNav,
+      { opacity: 0, y: 16, duration: 0.6 },
+      '-=0.4'
+    );
+  }
 
   const heroBg = document.querySelector('.hero__bg img');
   if (heroBg) {

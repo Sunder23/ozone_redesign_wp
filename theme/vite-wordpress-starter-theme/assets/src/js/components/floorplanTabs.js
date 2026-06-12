@@ -25,9 +25,15 @@ export function initFloorplanTabs() {
 
     floorBtns.forEach((btn, i) => {
       btn.addEventListener('click', () => {
+        if (btn.classList.contains('floorplan__floor--active')) return;
         floorBtns.forEach(b => b.classList.remove('floorplan__floor--active'));
         btn.classList.add('floorplan__floor--active');
         swiper.slideTo(i);
+
+        tabBtns.forEach(b => b.classList.remove('floorplan__section-btn--active'));
+        const matchingTab = [...tabBtns].find(b => b.dataset.tab === String(index));
+        if (matchingTab) matchingTab.classList.add('floorplan__section-btn--active');
+        panels.forEach(p => p.classList.toggle('is-active', p.dataset.tab === String(index)));
       });
     });
 
@@ -45,6 +51,8 @@ export function initFloorplanTabs() {
       tabBtns.forEach(b => b.classList.remove('floorplan__section-btn--active'));
       btn.classList.add('floorplan__section-btn--active');
       panels.forEach(p => p.classList.toggle('is-active', p.dataset.tab === idx));
+
+      document.querySelectorAll('.floorplan__floor').forEach(b => b.classList.remove('floorplan__floor--active'));
     });
   });
 }

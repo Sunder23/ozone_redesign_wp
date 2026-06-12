@@ -215,8 +215,27 @@
 
               <?php if (!empty($tech['items'])): ?>
                 <div class="tech__grid">
-                  <div class="tech__title-panel tech__title-panel--left"><span>Технології, які працюють непомітно</span></div>
-                  <div class="tech__title-panel tech__title-panel--right"><span>Технології, які працюють непомітно</span></div>
+                  <div class="tech__title-overlay"></div>
+                  <div class="tech__title-wrap">
+                    <?php
+                    $title_raw = !empty($tech['title']) ? strip_tags($tech['title']) : 'Технології, які працюють непомітно';
+                    $lines = preg_split('/\r?\n|<br\s*\/?>/i', $title_raw);
+                    if (count($lines) === 1) {
+                      $words = explode(' ', trim($lines[0]));
+                      $mid   = (int) ceil(count($words) / 2);
+                      $lines = [
+                        implode(' ', array_slice($words, 0, $mid)),
+                        implode(' ', array_slice($words, $mid)),
+                      ];
+                    }
+                    foreach ($lines as $idx => $line):
+                      $dir = $idx % 2 === 0 ? 'odd' : 'even';
+                    ?>
+                      <div class="tech__title-line tech__title-line--<?php echo $dir; ?>">
+                        <span><?php echo esc_html(trim($line)); ?></span>
+                      </div>
+                    <?php endforeach; ?>
+                  </div>
                   <div class="tech__bg">
                     <div class="tech__bg-fill"></div>
                     <?php if (!empty($tech['bg_image'])): $img = $tech['bg_image']; ?>
@@ -268,7 +287,7 @@
                       <?php if (count($section['slides']) > 1): ?>
                         <div class="floorplan__floors" data-floorplan="<?php echo esc_attr($i); ?>">
                           <?php foreach ($section['slides'] as $j => $slide): ?>
-                            <button class="floorplan__floor<?php echo $j === 0 ? ' floorplan__floor--active' : ''; ?>"
+                            <button class="floorplan__floor<?php echo ($i === 0 && $j === 0) ? ' floorplan__floor--active' : ''; ?>"
                               data-slide="<?php echo esc_attr($j); ?>">
                               <?php echo $j === 0 ? '1&nbsp;поверх' : ($j + 1); ?>
                             </button>

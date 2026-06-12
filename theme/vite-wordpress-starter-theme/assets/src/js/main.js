@@ -30,9 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initFormatsPin();
   initFloorplanTabs();
   initWellnessStack();
-  initScrollReveal();
   initTechReveal();
   initTimelineReveal();
+  initScrollReveal();
   initHeaderSecond();
   initVideoPopup();
+
+  ScrollTrigger.refresh();
 });
