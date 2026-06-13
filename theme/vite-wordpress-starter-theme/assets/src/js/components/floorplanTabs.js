@@ -1,5 +1,5 @@
 import Swiper from 'swiper';
-import { Pagination } from 'swiper/modules';
+import { Pagination, Navigation } from 'swiper/modules';
 
 export function initFloorplanTabs() {
   const tabBtns = document.querySelectorAll('.floorplan__section-btn');
@@ -15,11 +15,15 @@ export function initFloorplanTabs() {
     if (!swiperEl) return;
 
     const swiper = new Swiper(swiperEl, {
-      modules: [Pagination],
+      modules: [Pagination, Navigation],
       slidesPerView: 1,
       pagination: {
         el: swiperEl.querySelector('.swiper-pagination'),
         clickable: true,
+      },
+      navigation: {
+        prevEl: swiperEl.querySelector('.swiper-button-prev'),
+        nextEl: swiperEl.querySelector('.swiper-button-next'),
       },
     });
 

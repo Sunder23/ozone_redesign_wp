@@ -451,6 +451,23 @@
                             "prepend": "",
                             "append": "",
                             "parent_repeater": "field_032cdc46"
+                        },
+                        {
+                            "key": "field_formats_card_link",
+                            "label": "Link",
+                            "name": "link",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "parent_repeater": "field_032cdc46"
                         }
                     ]
                 }
@@ -962,6 +979,7 @@
                             "max": 0,
                             "collapsed": "",
                             "rows_per_page": 20,
+                            "parent_repeater": "field_fp_sections",
                             "sub_fields": [
                                 {
                                     "key": "field_6a2176fb7a381",
@@ -990,8 +1008,7 @@
                                     "preview_size": "medium",
                                     "parent_repeater": "field_fp_slides"
                                 }
-                            ],
-                            "parent_repeater": "field_fp_sections"
+                            ]
                         }
                     ]
                 }
@@ -1317,5 +1334,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780698865
+    "modified": 1781282082
 }

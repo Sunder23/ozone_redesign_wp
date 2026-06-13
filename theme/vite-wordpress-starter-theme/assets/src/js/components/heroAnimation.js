@@ -10,18 +10,20 @@ export async function initHeroAnimation() {
 
   await document.fonts.ready;
 
-  const header = document.querySelector('.header');
   const heroNav = document.querySelector('.hero__content .header__nav');
+  const contactItems = document.querySelectorAll('.header_wrapper > *');
   const split = new SplitText(title, { type: 'lines', mask: 'lines' });
   title.style.opacity = 1;
 
   const tl = gsap.timeline({ defaults: { ease: 'power3.out', force3D: true } });
 
-  if (header) {
-    tl.fromTo(header,
-      { opacity: 0, y: -24 },
-      { opacity: 1, y: 0, duration: 1 }
-    );
+  if (contactItems.length) {
+    gsap.set(contactItems, { opacity: 0, filter: 'blur(6px)' });
+    tl.to(contactItems, {
+      opacity: 1, filter: 'blur(0px)',
+      duration: 1.1, stagger: 0.14, ease: 'power2.inOut',
+      delay: 0.2,
+    });
   }
 
   tl.from(split.lines,

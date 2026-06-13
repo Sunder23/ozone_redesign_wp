@@ -129,9 +129,15 @@
                           <p><?php echo esc_html($card['size']); ?></p>
                         <?php endif; ?>
                       </div>
-                      <button class="btn--arrow" aria-label="Детальніше">
+                      <?php
+                        $card_link = !empty($card['link']) ? $card['link'] : [];
+                        $card_href   = !empty($card_link['url'])    ? esc_url($card_link['url'])       : '#';
+                        $card_target = !empty($card_link['target']) ? $card_link['target']             : '_self';
+                        $card_label  = !empty($card_link['title'])  ? esc_attr($card_link['title'])    : 'Детальніше';
+                      ?>
+                      <a href="<?php echo $card_href; ?>" target="<?php echo esc_attr($card_target); ?>" class="btn--arrow" aria-label="<?php echo $card_label; ?>">
                         <img src="<?php echo esc_url(get_theme_file_uri('static/img/icon-arrow.svg')); ?>" alt="" width="48" height="48" class="btn--arrow--img">
-                      </button>
+                      </a>
                     </div>
                   <?php endforeach; ?>
                 </div>
@@ -320,6 +326,12 @@
                               <?php endif; ?>
                             <?php endforeach; ?>
                           </div>
+                          <button class="swiper-button-prev" aria-label="Previous slide">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C7.10536 12.5196 7 12.2652 7 12C7 11.7348 7.10536 11.4804 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z" fill="currentColor"/></svg>
+                          </button>
+                          <button class="swiper-button-next" aria-label="Next slide">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:scaleX(-1)"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C7.10536 12.5196 7 12.2652 7 12C7 11.7348 7.10536 11.4804 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z" fill="currentColor"/></svg>
+                          </button>
                           <div class="swiper-pagination"></div>
                         </div>
                       <?php endif; ?>

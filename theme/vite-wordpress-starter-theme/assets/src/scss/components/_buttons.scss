@@ -89,6 +89,15 @@
   width: 48px;
   height: 48px;
   flex-shrink: 0;
+  text-decoration: none !important;
+
+  &:hover {
+    img {
+      background: none !important;
+    }
+
+    background: none !important;
+  }
 }
 
 .btn--glass {
